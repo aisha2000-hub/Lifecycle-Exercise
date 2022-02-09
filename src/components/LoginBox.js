@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 
 export const LoginBox = ({ onUserChanged = () => {} }) => {
   const [name, setName] = useState("");
+
+  useEffect(() => {
+    console.log(`isLoggedIn hat sich geändert! Der neue Wert ist: ${name}`);
+  }, [name]);
 
   return (
     <div>
@@ -13,7 +17,12 @@ export const LoginBox = ({ onUserChanged = () => {} }) => {
             setName(e.target.value);
           }}
         />
-        <button>Login</button>
+        <button onClick={() =>{
+           onUserChanged(name)
+        }}
+        >
+          Login</button>
+       
       </div>
     </div>
   );
